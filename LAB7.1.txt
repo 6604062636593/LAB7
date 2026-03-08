@@ -1,0 +1,42 @@
+double functionM(void);
+int functionN(int n, double x);
+double functionO(double, int, double, int);
+double functionP(int a, int n, int b, int c);
+
+int main(void) {
+    int a, b, c, d, e;
+    double r, s, t, u, v;
+
+    functionM(); 
+    // ไม่ผิด เรียกใช้ฟังก์ชันได้ แม้ไม่ได้รับค่าที่ return
+
+    a = functionM(); 
+    // ไม่เหมาะสม functionM คืนค่า double แต่ a เป็น int อาจเกิดการตัดค่าทศนิยม
+
+    b = functionN(a, b); 
+    // ไม่ผิด functionN ต้องการ (int,double) โดย b แปลงจาก int เป็น double ได้
+
+    r = functionO(r,a,s,b); 
+    // ไม่ผิด parameter ตรงกับ (double,int,double,int)
+
+    s = functionP(a,b,c,d,e); 
+    // ผิด functionP รับ parameter 4 ตัว แต่ส่งไป 5 ตัว
+
+    u = functionM(); 
+    // ไม่ผิด functionM คืนค่า double และ u เป็น double
+
+    c = d + functionN(r,s); 
+    // ผิด functionN ต้องการ (int,double) แต่ r เป็น double ในตำแหน่ง int
+
+    t = s * functionO(r, a, r, a); 
+    // ไม่ผิด parameter ตรงตามที่กำหนด
+
+    a = v + functionP(r, s, t, t); 
+    // ผิด functionP ต้องการ int ทั้งหมด แต่ส่ง double
+
+    functionP(functionN(a, a), s, t, t+r); 
+    // ผิด เพราะ s, t และ t+r เป็น double แต่ functionP ต้องการ int
+
+    v = functionP(functionN(a, a), s, t, t+r); 
+    // ผิดเหมือนข้อก่อนหน้า parameter ไม่ตรงชนิดข้อมูล
+}
